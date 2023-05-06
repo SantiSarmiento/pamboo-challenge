@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { AddIcon, ScrollView, Text, View } from "native-base";
+import { ScrollView, Text, View } from "native-base";
 import Header from "../../components/header/Header";
 import { useSelector } from 'react-redux';
-import CustomModal from "../../components/modal/Modal";
-import AgregarTarea from "../tareas/components/AgregarTarea";
 import { titulos } from "../../helpers/Colors";
 import CustomIcon from "../../components/icon/CustomIcon";
 import Tarea from "../../components/tarea/Tarea";
-
 
 const Completadas = () => {
 
     const tareasArr = useSelector((state: RootState) => state.tareas.tareas)
 
-    const [showModal, setShowModal] = useState(false)
     const [completas, setCompletas] = useState(false)
 
     useEffect(() => {
@@ -50,12 +46,6 @@ const Completadas = () => {
 
                     </ScrollView>
             }
-
-            <CustomModal showModal={showModal} close={() => setShowModal(false)} titulo={"Agregar tarea"} children={<AgregarTarea close={() => setShowModal(false)} />} />
-
-            <View bgColor={titulos} position={"absolute"} right={4} bottom={4} p={1}>
-                <AddIcon size={"xl"} color={"white"} onPress={() => setShowModal(true)} />
-            </View>
         </View>
     )
 }

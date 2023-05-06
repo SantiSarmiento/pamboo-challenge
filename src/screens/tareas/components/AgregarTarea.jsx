@@ -3,6 +3,7 @@ import { HStack, Input, Text } from "native-base"
 import { useSelector, useDispatch } from 'react-redux';
 import CustomButton from "../../../components/button/CustomButton";
 import { agregarTarea } from "../../../store/tareas/tareasSlice";
+import { titulos } from "../../../helpers/Colors";
 
 const AgregarTarea = ({ close }) => {
 
@@ -47,7 +48,7 @@ const AgregarTarea = ({ close }) => {
                 fontSize={"lg"}
 
                 //style
-                focusOutlineColor={error !== "" ? "red.500" : "yellow.500"}
+                focusOutlineColor={error !== "" ? "red.500" : titulos}
                 borderColor={error !== "" ? "red.500" : "gray.400"}
                 bgColor={"white"}
             />
