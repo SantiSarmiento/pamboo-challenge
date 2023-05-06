@@ -68,7 +68,7 @@ const BottomStack = () => {
                                     const boxStyle = {
                                         backgroundColor: animation.interpolate({
                                             inputRange: [0, 1],
-                                            outputRange: ['rgb(255,255,255)', '#ffefbe'],
+                                            outputRange: ['rgb(255,255,255)', '#92E3A9'],
                                         }),
                                     };
 

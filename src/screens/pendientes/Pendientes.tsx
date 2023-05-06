@@ -8,28 +8,28 @@ import { titulos } from "../../helpers/Colors";
 import CustomIcon from "../../components/icon/CustomIcon";
 import Tarea from "../../components/tarea/Tarea";
 
+
 const Pendientes = () => {
 
     const tareasArr = useSelector((state: RootState) => state.tareas.tareas)
 
-    const [tareas, setTareas] = useState<Tarea[]>([])
-
     const [showModal, setShowModal] = useState(false)
-
-    const filtrarCompletadas = () => {
-        setTareas(tareasArr.filter(item => item.estado === 0))
-    }
+    const [pendientes, setPendientes] = useState(false)
 
     useEffect(() => {
-        filtrarCompletadas()
+        let existe = tareasArr.some(function (objeto) {
+            return objeto.estado === 0;
+        });
+        setPendientes(existe)
     }, [tareasArr])
+
 
     return (
         <View bgColor={"white"} h={"100%"} w={"100%"}>
             <Header titulo={"Pendientes"} />
 
             {
-                tareas.length === 0
+                pendientes === false
                     ?
                     <View alignSelf={"center"} justifyContent={"center"} alignItems={"center"} flex={1}>
                         <CustomIcon nombre={"check-list"} size={"2xl"} width={undefined} heigth={undefined} margin={undefined} />
@@ -41,8 +41,10 @@ const Pendientes = () => {
                     }}>
 
                         {
-                            tareas.map(({ nombre, estado, favorito }, index) => {
-                                return <Tarea key={index} nombre={nombre} estado={estado} />
+                            tareasArr.map(({ nombre, estado, favorito }, index) => {
+                                if (estado === 0) {
+                                    return <Tarea key={index} nombre={nombre} estado={estado} favorito={favorito} />
+                                }
                             })
                         }
 

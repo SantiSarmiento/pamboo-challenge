@@ -8,11 +8,9 @@ import CustomModal from "../../components/modal/Modal";
 import AgregarTarea from "./components/AgregarTarea";
 import CustomIcon from "../../components/icon/CustomIcon";
 
-
 const Tareas = () => {
 
     const tareas = useSelector((state: RootState) => state.tareas.tareas)
-
     const [showModal, setShowModal] = useState(false)
 
 
@@ -34,7 +32,7 @@ const Tareas = () => {
 
                         {
                             tareas.map(({ nombre, estado, favorito }, index) => {
-                                return <Tarea key={index} nombre={nombre} estado={estado} />
+                                return <Tarea key={index} nombre={nombre} estado={estado} favorito={favorito} />
                             })
                         }
 

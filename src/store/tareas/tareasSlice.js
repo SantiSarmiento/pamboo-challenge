@@ -13,11 +13,9 @@ export const tareasSlice = createSlice({
         },
         modificarEstado: (state, action) => {
             const tareaNombre = action.payload.nombre;
-            const estado = action.payload.estado;
             const tareaEncontrada = state.tareas.find(tarea => tarea.nombre.toLowerCase() === tareaNombre.toLowerCase());
             if (tareaEncontrada) {
-                console.log(tareaEncontrada)
-                tareaEncontrada.estado = estado;
+                tareaEncontrada.estado = action.payload.estado;
             }
         },
     },
