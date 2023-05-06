@@ -9,11 +9,20 @@ export const tareasSlice = createSlice({
     initialState,
     reducers: {
         agregarTarea: (state, action) => {
-            console.log(action.payload)
+            state.tareas = [...state.tareas, action.payload]
+        },
+        modificarEstado: (state, action) => {
+            const tareaNombre = action.payload.nombre;
+            const estado = action.payload.estado;
+            const tareaEncontrada = state.tareas.find(tarea => tarea.nombre.toLowerCase() === tareaNombre.toLowerCase());
+            if (tareaEncontrada) {
+                console.log(tareaEncontrada)
+                tareaEncontrada.estado = estado;
+            }
         },
     },
 })
 
-export const { agregarTarea } = tareasSlice.actions
+export const { agregarTarea, modificarEstado } = tareasSlice.actions
 
 export default tareasSlice.reducer

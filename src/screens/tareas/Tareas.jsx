@@ -33,8 +33,8 @@ const Tareas = () => {
                     }}>
 
                         {
-                            tareas.map(({ nombre, estado, favorito }) => {
-                                return <Tarea nombre={nombre} estado={estado} />
+                            tareas.map(({ nombre, estado, favorito }, index) => {
+                                return <Tarea key={index} nombre={nombre} estado={estado} />
                             })
                         }
 
@@ -42,7 +42,7 @@ const Tareas = () => {
             }
 
 
-            <CustomModal showModal={showModal} close={() => setShowModal(false)} titulo={"Agregar tarea"} children={<AgregarTarea />} />
+            <CustomModal showModal={showModal} close={() => setShowModal(false)} titulo={"Agregar tarea"} children={<AgregarTarea close={() => setShowModal(false)} />} />
 
             <View bgColor={titulos} position={"absolute"} right={4} bottom={4} p={1}>
                 <AddIcon size={"xl"} color={"white"} onPress={() => setShowModal(true)} />

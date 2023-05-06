@@ -1,20 +1,38 @@
 import React, { useState } from "react"
-import { Input } from "native-base"
+import { HStack, Input, Text } from "native-base"
 import { useSelector, useDispatch } from 'react-redux';
+import CustomButton from "../../../components/button/CustomButton";
+import { agregarTarea } from "../../../store/tareas/tareasSlice";
 
-const AgregarTarea = () => {
+const AgregarTarea = ({ close }) => {
 
 
     const dispatch = useDispatch()
     const tareas = useSelector(state => state.tareas.tareas)
-
-    console.log("soy yoo", tareas)
 
     const [nuevaTarea, setNuevaTarea] = useState({
         nombre: "",
         estado: 0,
         favorito: 0
     })
+    const [error, setError] = useState("")
+
+    function buscarPorNombre() {
+        for (let i in tareas) {
+            if (tareas[i].nombre.toLowerCase() === nuevaTarea.nombre.toLowerCase()) {
+                setError("Este nombre ya existe")
+                return
+            }
+        }
+        if (error !== "") setError("")
+        agregarNuevaTarea()
+        setNuevaTarea({
+            nombre: "",
+            estado: 0,
+            favorito: 0
+        })
+        close()
+    }
 
     const agregarNuevaTarea = () => {
         const res = dispatch(agregarTarea(nuevaTarea))
@@ -29,9 +47,15 @@ const AgregarTarea = () => {
                 fontSize={"lg"}
 
                 //style
-                focusOutlineColor={"yellow.500"}
+                focusOutlineColor={error !== "" ? "red.500" : "yellow.500"}
+                borderColor={error !== "" ? "red.500" : "gray.400"}
                 bgColor={"white"}
             />
+            <Text textAlign={"center"} mt={1} color={"red.500"}>{error}</Text>
+            <HStack justifyContent={"space-around"} mt={5}>
+                <CustomButton titulo={"Cancelar"} callBack={close} />
+                <CustomButton titulo={"Confirmar"} callBack={buscarPorNombre} disabled={nuevaTarea.nombre === ""} />
+            </HStack>
         </>
     )
 }
