@@ -3,8 +3,6 @@ import { CloseIcon, HStack, Modal, Text } from "native-base";
 
 const CustomModal = ({ showModal, close, titulo, children }) => {
 
-
-
     return (
         <Modal isOpen={showModal} onClose={close} w={"100%"}>
             <Modal.Content w={"100%"}>

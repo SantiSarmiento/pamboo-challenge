@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    tareas: []
+    tareas: [],
+    borradas: []
 }
 
 export const tareasSlice = createSlice({
@@ -18,9 +19,21 @@ export const tareasSlice = createSlice({
                 tareaEncontrada.estado = action.payload.estado;
             }
         },
+        borrarTarea: (state, action) => {
+            const tareaNombre = action.payload;
+            const tareaBorrada = state.tareas.find(
+                (tarea) => tarea.nombre.toLowerCase() === tareaNombre.toLowerCase()
+            );
+
+            state.tareas = state.tareas.filter(
+                (tarea) => tarea.nombre.toLowerCase() !== tareaNombre.toLowerCase()
+            );
+            state.borradas = [...state.borradas, tareaBorrada];
+
+        },
     },
 })
 
-export const { agregarTarea, modificarEstado } = tareasSlice.actions
+export const { agregarTarea, modificarEstado, borrarTarea } = tareasSlice.actions
 
 export default tareasSlice.reducer
