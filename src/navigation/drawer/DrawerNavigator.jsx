@@ -13,7 +13,7 @@ const DrawerNavigator = () => {
             }}
             drawerContent={props => <DrawerComponent {...props} />}
         >
-            <Drawer.Screen name='bottom-stack' component={BottomStack} />
+            <Drawer.Screen name='bottom-stack' options={{ headerShown: false }} component={BottomStack} />
             {/* {
                 drawerNavigation.map((item, index) => {
                     return (
