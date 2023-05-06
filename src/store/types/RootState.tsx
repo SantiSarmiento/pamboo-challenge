@@ -6,6 +6,8 @@ interface RootState {
 
 interface Tarea {
     estado: number;
-    favorito: number;
     nombre: string;
+    descripcion: string;
+    fecha: string;
+    hora: string;
 }

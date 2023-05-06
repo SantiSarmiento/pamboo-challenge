@@ -7,6 +7,7 @@ import { Text } from 'native-base';
 //screens
 import { BottomScreens } from "./components/BottomScreens";
 import { titulos } from "../../helpers/Colors";
+import CustomIcon from "../../components/icon/CustomIcon";
 
 const BottomNavigator = createBottomTabNavigator()
 
@@ -26,6 +27,9 @@ const BottomStack = () => {
         >
             {
                 BottomScreens.map(({ name, component }, index) => {
+                    function capitalizar(str) {
+                        return str.charAt(0).toUpperCase() + str.slice(1);
+                    }
                     return (
                         <BottomNavigator.Screen
                             key={index}
@@ -74,8 +78,8 @@ const BottomStack = () => {
 
                                     return (
                                         < Animated.View style={[styles.box, boxStyle]}>
-                                            {/* <CustomIcon name={"casa"} size={"xs"} /> */}
-                                            <Text fontWeight={"medium"} fontSize={"lg"} color={selected ? "white" : titulos} textAlign={"center"} w={"100%"}>{name}</Text>
+                                            <CustomIcon nombre={name} size={"2xs"} />
+                                            <Text fontWeight={"medium"} fontSize={"lg"} color={"black"} textAlign={"center"} w={"100%"}>{capitalizar(name)}</Text>
                                         </Animated.View>
                                     )
                                 }
