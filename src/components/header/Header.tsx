@@ -4,8 +4,8 @@ import { titulos } from "../../helpers/Colors"
 
 const Header = ({ titulo }) => {
     return (
-        <HStack alignItems={"center"} justifyContent={"space-between"} p={5}>
-            <Text fontSize={"2xl"} color={titulos} fontWeight={"medium"}>{titulo}</Text>
+        <HStack alignItems={"center"} justifyContent={"space-between"} w={"90%"} alignSelf={"center"} mt={8} mb={2}>
+            <Text fontSize={"3xl"} color={titulos} fontWeight={"medium"}>{titulo}</Text>
             <HamburgerIcon size={"xl"} color={titulos} />
         </HStack>
     )

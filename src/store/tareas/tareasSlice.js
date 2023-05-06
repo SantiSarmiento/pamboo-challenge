@@ -1,19 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    completas: [],
-    pendientes: []
+    tareas: []
 }
 
 export const tareasSlice = createSlice({
-    name: 'user',
+    name: 'tareas',
     initialState,
     reducers: {
-
+        agregarTarea: (state, action) => {
+            console.log(action.payload)
+        },
     },
 })
 
-// Action creators are generated for each case reducer function
-export const { } = tareasSlice.actions
+export const { agregarTarea } = tareasSlice.actions
 
 export default tareasSlice.reducer
