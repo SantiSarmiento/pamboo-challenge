@@ -7,7 +7,6 @@ import Svg, { Path } from "react-native-svg"
 import CustomInput from "../../components/input/CustomInput";
 import { titulos } from "../../helpers/Colors";
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { NavigationProp } from '@react-navigation/native';
 import CustomButton from "../../components/button/CustomButton";
 
 
@@ -74,6 +73,7 @@ const AgregarTarea = ({ navigation }) => {
 
     const agregarNuevaTarea = () => {
         dispatch(agregarTarea(nuevaTarea))
+        navigation.goBack()
     }
 
 
@@ -132,7 +132,7 @@ const AgregarTarea = ({ navigation }) => {
                 <CustomButton
                     titulo={"Guardar"}
                     callBack={buscarPorNombre}
-                    disabled={false}
+                    disabled={nuevaTarea.nombre === "" || nuevaTarea.fecha === "" || nuevaTarea.hora === ""}
                 />
             </View>
 

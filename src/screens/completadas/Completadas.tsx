@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { ScrollView, Text, View } from "native-base";
 import Header from "../../components/header/Header";
 import { useSelector } from 'react-redux';
-import { titulos } from "../../helpers/Colors";
 import CustomIcon from "../../components/icon/CustomIcon";
 import Tarea from "../../components/tarea/Tarea";
 
@@ -22,7 +21,7 @@ const Completadas = () => {
 
     return (
         <View bgColor={"white"} h={"100%"} w={"100%"}>
-            <Header titulo={"Completadas"} />
+            <Header />
 
             {
                 completas === false

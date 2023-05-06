@@ -6,7 +6,6 @@ import { Text } from 'native-base';
 
 //screens
 import { BottomScreens } from "./components/BottomScreens";
-import { titulos } from "../../helpers/Colors";
 import CustomIcon from "../../components/icon/CustomIcon";
 
 const BottomNavigator = createBottomTabNavigator()
@@ -72,14 +71,14 @@ const BottomStack = () => {
                                     const boxStyle = {
                                         backgroundColor: animation.interpolate({
                                             inputRange: [0, 1],
-                                            outputRange: ['rgb(255,255,255)', '#92E3A9'],
+                                            outputRange: ['rgb(255,255,255)', '#ffecd3'],
                                         }),
                                     };
 
                                     return (
                                         < Animated.View style={[styles.box, boxStyle]}>
                                             <CustomIcon nombre={name} size={"2xs"} />
-                                            <Text fontWeight={"medium"} fontSize={"lg"} color={"black"} textAlign={"center"} w={"100%"}>{capitalizar(name)}</Text>
+                                            <Text fontWeight={"medium"} fontSize={"sm"} color={"black"} textAlign={"center"} w={"100%"}>{capitalizar(name)}</Text>
                                         </Animated.View>
                                     )
                                 }

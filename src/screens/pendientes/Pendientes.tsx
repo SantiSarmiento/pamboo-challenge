@@ -23,7 +23,7 @@ const Pendientes = () => {
 
     return (
         <View bgColor={"white"} h={"100%"} w={"100%"}>
-            <Header titulo={"Pendientes"} />
+            <Header  />
 
             {
                 pendientes === false

@@ -17,11 +17,11 @@ const Tarea = ({ nombre, estado, descripcion, fecha, hora }) => {
     }
 
     return (
-        <HStack bgColor={estado === 1 ? completadas : "#f4f4f4"} p={3} w={"90%"} alignItems={"center"} m={2}>
+        <HStack bgColor={estado === 1 ? completadas : "#f4f4f4"} p={2} w={"90%"} alignItems={"center"} m={2}>
             <Checkbox isChecked={estado === 1} value={estado} accessibilityLabel={nombre} colorScheme={"green"} onChange={modificarEstadoTarea} />
             <VStack>
-                <Text ml={4} fontSize={"md"} fontWeight={"medium"} strikeThrough={estado === 1 ? true : false}>{capitalizar(nombre)}</Text>
-                <Text ml={4} fontSize={"sm"} >{descripcion !== "" ? capitalizar(descripcion) : "-"}</Text>
+                <Text ml={3} fontSize={"md"} fontWeight={"medium"} strikeThrough={estado === 1 ? true : false}>{capitalizar(nombre)}</Text>
+                <Text ml={4} fontSize={"sm"} pr={2} >{descripcion !== "" ? capitalizar(descripcion) : "-"}</Text>
             </VStack>
             <Text position={"absolute"} right={2} top={2} color={"gray.400"}>{hora}</Text>
         </HStack>

@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { AddIcon, ScrollView, Text, View } from "native-base";
+import React from "react";
+import { ScrollView, Text, View } from "native-base";
 import Header from "../../components/header/Header";
-import { useSelector, useDispatch } from 'react-redux';
-import { titulos } from "../../helpers/Colors";
+import { useSelector } from 'react-redux';
 import Tarea from "../../components/tarea/Tarea";
 import CustomIcon from "../../components/icon/CustomIcon";
 import AgregarIcono from "../../components/agregarIcono/AgregarIcono";
@@ -13,7 +12,7 @@ const Tareas = () => {
 
     return (
         <View bgColor={"white"} h={"100%"} w={"100%"}>
-            <Header titulo={"Mis tareas"} />
+            <Header />
 
             {
                 tareas.length === 0
