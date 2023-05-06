@@ -11,7 +11,7 @@ import CustomIcon from "../../components/icon/CustomIcon";
 
 const Tareas = () => {
 
-    const tareas = useSelector(state => state.tareas.tareas)
+    const tareas = useSelector((state: RootState) => state.tareas.tareas)
 
     const [showModal, setShowModal] = useState(false)
 
@@ -24,7 +24,7 @@ const Tareas = () => {
                 tareas.length === 0
                     ?
                     <View alignSelf={"center"} justifyContent={"center"} alignItems={"center"} flex={1}>
-                        <CustomIcon nombre={"check-list"} size={"2xl"} />
+                        <CustomIcon nombre={"check-list"} size={"2xl"} width={undefined} heigth={undefined} margin={undefined} />
                         <Text color={titulos} fontSize={"xl"}>Agrega una tarea para comenzar</Text>
                     </View>
                     :
