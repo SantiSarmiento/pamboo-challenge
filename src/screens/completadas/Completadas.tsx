@@ -28,7 +28,7 @@ const Completadas = () => {
                     ?
                     <View alignSelf={"center"} justifyContent={"center"} alignItems={"center"} flex={1}>
                         <CustomIcon nombre={"checklist-bro"} size={"2xl"} width={undefined} heigth={undefined} margin={undefined} />
-                        <Text fontSize={"xl"}>No se econtraron tareas verde_claro</Text>
+                        <Text fontSize={"xl"}>No se econtraron tareas completadas</Text>
                     </View>
                     :
                     <ScrollView contentContainerStyle={{

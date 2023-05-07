@@ -5,11 +5,13 @@ import { naranja_claro, naranja_oscuro } from "../../../helpers/Colors";
 import { drawerScreens } from "./DrawerScreens";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from 'react-native';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CustomAvatars from "../../../components/avatar/CustomAvatar";
+import { eliminarUsuario } from "../../../store/usuario/usuarioSlice";
 
 const DrawerComponent = ({ state }) => {
 
+    const dispatch = useDispatch()
     const usuario = useSelector((state) => state.usuario)
     const navigation = useNavigation()
     const [selectedScreen, setSelectedScreen] = useState("")
@@ -28,28 +30,35 @@ const DrawerComponent = ({ state }) => {
 
     return (
         <Box style={styles.container}>
-            <View style={styles.user}>
-                <CustomAvatars size={"xl"} imagen={usuario.foto} />
-                <Text fontSize={"xl"} fontWeight={"medium"} color={"white"}>{capitalizeFirstLetter(usuario.nombre)}</Text>
+            <View flex={1}>
+                <View style={styles.user}>
+                    <CustomAvatars size={"xl"} imagen={usuario.foto} />
+                    <Text fontSize={"xl"} fontWeight={"medium"} color={"white"}>{capitalizeFirstLetter(usuario.nombre)}</Text>
 
+                </View>
+                <TouchableOpacity onPress={() => navigation.navigate("tareas")}>
+                    <View style={selectedScreen === "" ? styles.selected_items_list : styles.items_list}>
+                        <Text fontSize={"lg"} >{capitalizeFirstLetter("Home")}</Text>
+                    </View>
+                </TouchableOpacity>
+                {
+                    drawerScreens.map((item, index) => {
+                        return (
+                            <TouchableOpacity key={index} onPress={() => navigation.navigate(item.name)}>
+                                <View key={index} style={selectedScreen === item.name ? styles.selected_items_list : styles.items_list}>
+                                    <Text fontSize={"lg"} >{capitalizeFirstLetter(item.name)}</Text>
+                                </View>
+                            </TouchableOpacity>
+
+                        )
+                    })
+                }
             </View>
-            <TouchableOpacity onPress={() => navigation.navigate("tareas")}>
-                <View style={selectedScreen === "" ? styles.selected_items_list : styles.items_list}>
-                    <Text fontSize={"lg"} >{capitalizeFirstLetter("Home")}</Text>
+            <TouchableOpacity onPress={() => dispatch(eliminarUsuario())}>
+                <View >
+                    <Text fontSize={"lg"} p={15} >Cerrar sesion</Text>
                 </View>
             </TouchableOpacity>
-            {
-                drawerScreens.map((item, index) => {
-                    return (
-                        <TouchableOpacity key={index} onPress={() => navigation.navigate(item.name)}>
-                            <View key={index} style={selectedScreen === item.name ? styles.selected_items_list : styles.items_list}>
-                                <Text fontSize={"lg"} >{capitalizeFirstLetter(item.name)}</Text>
-                            </View>
-                        </TouchableOpacity>
-
-                    )
-                })
-            }
         </Box>
     )
 }
@@ -60,6 +69,7 @@ const styles = StyleSheet.create({
     container: {
         display: 'flex',
         flexDirection: 'column',
+        justifyContent: 'space-between',
         height: '100%',
         backgroundColor: "white",
         borderTopRightRadius: 20,

@@ -15,9 +15,14 @@ export const usuarioSlice = createSlice({
             state.foto = action.payload.foto
             state.activo = true
         },
+        eliminarUsuario: (state) => {
+            state.nombre = ""
+            state.foto = ""
+            state.activo = false
+        },
     },
 })
 
-export const { guardarUsuario } = usuarioSlice.actions
+export const { guardarUsuario, eliminarUsuario } = usuarioSlice.actions
 
 export default usuarioSlice.reducer
