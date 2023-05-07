@@ -8,6 +8,8 @@ const obtenerImagen = (nombre) => {
         case 'completadas': return require('../../../assets/icons/completadas.png')
         case 'tareas': return require('../../../assets/icons/tareas.png')
         case 'no-data': return require('../../../assets/icons/no-data.png')
+        case 'checklist-bro': return require('../../../assets/icons/checklist-bro.png')
+        case 'checklist-cuate': return require('../../../assets/icons/checklist-cuate.png')
     }
 }
 

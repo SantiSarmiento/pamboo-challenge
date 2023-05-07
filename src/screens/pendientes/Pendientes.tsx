@@ -23,7 +23,7 @@ const Pendientes = () => {
 
     return (
         <View bgColor={"white"} h={"100%"} w={"100%"}>
-            <Header  />
+            <Header titulo={undefined} />
 
             {
                 pendientes === false
@@ -40,7 +40,7 @@ const Pendientes = () => {
                         {
                             tareasArr.map(({ nombre, estado, descripcion, fecha, hora }, index) => {
                                 if (estado === 0) {
-                                    return <Tarea key={index} nombre={nombre} estado={estado} descripcion={descripcion} fecha={fecha} hora={hora} />
+                                    return <Tarea key={index} nombre={nombre} estado={estado} descripcion={descripcion} fecha={fecha} hora={hora} eliminado={false} />
                                 }
                             })
                         }

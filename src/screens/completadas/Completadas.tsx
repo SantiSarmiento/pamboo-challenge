@@ -21,13 +21,13 @@ const Completadas = () => {
 
     return (
         <View bgColor={"white"} h={"100%"} w={"100%"}>
-            <Header />
+            <Header titulo={undefined} />
 
             {
                 completas === false
                     ?
                     <View alignSelf={"center"} justifyContent={"center"} alignItems={"center"} flex={1}>
-                        <CustomIcon nombre={"check-list"} size={"2xl"} width={undefined} heigth={undefined} margin={undefined} />
+                        <CustomIcon nombre={"checklist-bro"} size={"2xl"} width={undefined} heigth={undefined} margin={undefined} />
                         <Text fontSize={"xl"}>No se econtraron tareas completadas</Text>
                     </View>
                     :
@@ -38,7 +38,7 @@ const Completadas = () => {
                         {
                             tareasArr.map(({ nombre, estado, descripcion, fecha, hora }, index) => {
                                 if (estado === 1) {
-                                    return <Tarea key={index} nombre={nombre} estado={estado} descripcion={descripcion} fecha={fecha} hora={hora} />
+                                    return <Tarea key={index} nombre={nombre} estado={estado} descripcion={descripcion} fecha={fecha} hora={hora} eliminado={false} />
                                 }
                             })
                         }

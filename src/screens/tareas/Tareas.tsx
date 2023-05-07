@@ -12,13 +12,13 @@ const Tareas = () => {
 
     return (
         <View bgColor={"white"} h={"100%"} w={"100%"}>
-            <Header />
+            <Header titulo={undefined} />
 
             {
                 tareas.length === 0
                     ?
                     <View alignSelf={"center"} justifyContent={"center"} alignItems={"center"} flex={1}>
-                        <CustomIcon nombre={"check-list"} size={"2xl"} width={undefined} heigth={undefined} margin={undefined} />
+                        <CustomIcon nombre={"checklist-cuate"} size={"2xl"} width={undefined} heigth={undefined} margin={undefined} />
                         <Text fontSize={"xl"}>Agrega una tarea para comenzar</Text>
                     </View>
                     :
@@ -28,7 +28,7 @@ const Tareas = () => {
 
                         {
                             tareas.map(({ nombre, estado, descripcion, fecha, hora }, index) => {
-                                return <Tarea key={index} nombre={nombre} estado={estado} descripcion={descripcion} fecha={fecha} hora={hora} />
+                                return <Tarea key={index} nombre={nombre} estado={estado} descripcion={descripcion} fecha={fecha} hora={hora} eliminado={false} />
                             })
                         }
 
