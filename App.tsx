@@ -6,7 +6,7 @@ import { store } from "./src/store/store";
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore } from 'redux-persist'
 import { naranja_oscuro } from "./src/helpers/Colors";
-
+import { request, PERMISSIONS } from "react-native-permissions";
 
 let persistor = persistStore(store)
 
@@ -53,6 +53,16 @@ const theme = extendTheme({
 });
 
 const App = () => {
+
+  //Obtenemos permisos para acceder a la geoposicion
+  React.useEffect(() => {
+    permisos()
+  }, [])
+
+  async function permisos() {
+    var response2 = await request(PERMISSIONS.ANDROID.CAMERA)
+    var response5 = await request(PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE)
+  }
   return (
     <NativeBaseProvider theme={theme}>
       <Provider store={store}>

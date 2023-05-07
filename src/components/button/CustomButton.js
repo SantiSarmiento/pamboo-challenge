@@ -4,12 +4,16 @@ import React from "react";
 const CustomButton = ({
     titulo,
     callBack,
-    disabled
+    disabled,
+    width,
+    styles
 }) => {
     return (
         <Button
             onPress={callBack}
             isDisabled={disabled ? disabled : false}
+            w={width ? width : "100%"}
+            style={styles}
         >
             {titulo}
         </Button>

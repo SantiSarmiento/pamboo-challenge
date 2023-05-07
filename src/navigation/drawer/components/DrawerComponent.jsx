@@ -5,9 +5,12 @@ import { naranja_claro, naranja_oscuro } from "../../../helpers/Colors";
 import { drawerScreens } from "./DrawerScreens";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from 'react-native';
+import { useSelector } from "react-redux";
+import CustomAvatars from "../../../components/avatar/CustomAvatar";
 
 const DrawerComponent = ({ state }) => {
 
+    const usuario = useSelector((state) => state.usuario)
     const navigation = useNavigation()
     const [selectedScreen, setSelectedScreen] = useState("")
 
@@ -26,11 +29,13 @@ const DrawerComponent = ({ state }) => {
     return (
         <Box style={styles.container}>
             <View style={styles.user}>
+                <CustomAvatars size={"xl"} imagen={usuario.foto} />
+                <Text fontSize={"xl"} fontWeight={"medium"} color={"white"}>{capitalizeFirstLetter(usuario.nombre)}</Text>
 
             </View>
             <TouchableOpacity onPress={() => navigation.navigate("tareas")}>
                 <View style={selectedScreen === "" ? styles.selected_items_list : styles.items_list}>
-                    <Text fontSize={"lg"} color={selectedScreen === "" ? "white" : "black"}>{capitalizeFirstLetter("Home")}</Text>
+                    <Text fontSize={"lg"} >{capitalizeFirstLetter("Home")}</Text>
                 </View>
             </TouchableOpacity>
             {
@@ -38,7 +43,7 @@ const DrawerComponent = ({ state }) => {
                     return (
                         <TouchableOpacity key={index} onPress={() => navigation.navigate(item.name)}>
                             <View key={index} style={selectedScreen === item.name ? styles.selected_items_list : styles.items_list}>
-                                <Text fontSize={"lg"} color={selectedScreen === item.name ? "white" : "black"}>{capitalizeFirstLetter(item.name)}</Text>
+                                <Text fontSize={"lg"} >{capitalizeFirstLetter(item.name)}</Text>
                             </View>
                         </TouchableOpacity>
 
@@ -63,17 +68,18 @@ const styles = StyleSheet.create({
     user: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: "space-between",
+        justifyContent: "space-around",
         height: '20%',
         borderTopRightRadius: 20,
-        backgroundColor: naranja_claro
+        backgroundColor: naranja_oscuro,
+        padding: 10
     },
     items_list: {
         backgroundColor: 'white',
         padding: 15
     },
     selected_items_list: {
-        backgroundColor: naranja_oscuro,
+        backgroundColor: naranja_claro,
         padding: 15
     },
 

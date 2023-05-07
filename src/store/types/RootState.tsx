@@ -3,6 +3,11 @@ interface RootState {
         borradas: Tarea[];
         tareas: Tarea[];
     };
+    usuario: {
+        nombre: string;
+        foto: string;
+        activo: boolean;
+    }
 }
 
 interface Tarea {
