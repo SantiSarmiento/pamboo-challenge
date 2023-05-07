@@ -12,7 +12,7 @@ const Tareas = () => {
 
     return (
         <View bgColor={"white"} h={"100%"} w={"100%"}>
-            <Header titulo={undefined} />
+            <Header titulo={"Mis tareas"} />
 
             {
                 tareas.length === 0
