@@ -27,8 +27,8 @@ const Eliminados = () => {
                     }}>
 
                         {
-                            tareas.map(({ nombre, estado, descripcion, fecha, hora }, index) => {
-                                return <Tarea key={index} nombre={nombre} estado={estado} descripcion={descripcion} fecha={fecha} hora={hora} eliminado={true} />
+                            tareas.map(({ nombre, estado, descripcion, fecha, hora, color }, index) => {
+                                return <Tarea key={index} nombre={nombre} estado={estado} descripcion={descripcion} fecha={fecha} hora={hora} eliminado={true} color={color} />
                             })
                         }
 

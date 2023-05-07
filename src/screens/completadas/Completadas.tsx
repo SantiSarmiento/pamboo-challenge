@@ -28,7 +28,7 @@ const Completadas = () => {
                     ?
                     <View alignSelf={"center"} justifyContent={"center"} alignItems={"center"} flex={1}>
                         <CustomIcon nombre={"checklist-bro"} size={"2xl"} width={undefined} heigth={undefined} margin={undefined} />
-                        <Text fontSize={"xl"}>No se econtraron tareas completadas</Text>
+                        <Text fontSize={"xl"}>No se econtraron tareas verde_claro</Text>
                     </View>
                     :
                     <ScrollView contentContainerStyle={{
@@ -36,9 +36,9 @@ const Completadas = () => {
                     }}>
 
                         {
-                            tareasArr.map(({ nombre, estado, descripcion, fecha, hora }, index) => {
+                            tareasArr.map(({ nombre, estado, descripcion, fecha, hora, color }, index) => {
                                 if (estado === 1) {
-                                    return <Tarea key={index} nombre={nombre} estado={estado} descripcion={descripcion} fecha={fecha} hora={hora} eliminado={false} />
+                                    return <Tarea key={index} nombre={nombre} estado={estado} descripcion={descripcion} fecha={fecha} hora={hora} eliminado={false} color={color} />
                                 }
                             })
                         }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { AddIcon, ScrollView, Text, View } from "native-base";
 import Header from "../../components/header/Header";
 import { useSelector } from 'react-redux';
-import { titulos } from "../../helpers/Colors";
+import { naranja_oscuro } from "../../helpers/Colors";
 import CustomIcon from "../../components/icon/CustomIcon";
 import Tarea from "../../components/tarea/Tarea";
 import AgregarIcono from "../../components/agregarIcono/AgregarIcono";
@@ -38,9 +38,9 @@ const Pendientes = () => {
                     }}>
 
                         {
-                            tareasArr.map(({ nombre, estado, descripcion, fecha, hora }, index) => {
+                            tareasArr.map(({ nombre, estado, descripcion, fecha, hora, color }, index) => {
                                 if (estado === 0) {
-                                    return <Tarea key={index} nombre={nombre} estado={estado} descripcion={descripcion} fecha={fecha} hora={hora} eliminado={false} />
+                                    return <Tarea key={index} nombre={nombre} estado={estado} descripcion={descripcion} fecha={fecha} hora={hora} eliminado={false} color={color} />
                                 }
                             })
                         }

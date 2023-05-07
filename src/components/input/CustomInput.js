@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, FormControl, Input, WarningOutlineIcon } from 'native-base'
-import { titulos } from '../../helpers/Colors'
+import { naranja_oscuro } from '../../helpers/Colors'
 
 const CustomInput = ({
     label,
@@ -15,14 +15,14 @@ const CustomInput = ({
     return (
         <Box alignItems="center" w={"100%"} mt={10}>
             <FormControl isInvalid={error} w={width ? width : "75%"}>
-                <FormControl.Label style={{ color: titulos }}>{label}</FormControl.Label>
+                <FormControl.Label style={{ color: naranja_oscuro }}>{label}</FormControl.Label>
                 <Input
                     value={value}
                     onChangeText={(text) => setValue(text)}
                     placeholder={placeholder}
                     //style
                     variant={"underlined"}
-                    focusOutlineColor={error ? "#e3001b" : titulos}
+                    focusOutlineColor={error ? "#e3001b" : naranja_oscuro}
                     borderColor={error ? "#e3001b" : "gray.400"}
                     fontSize={"md"}
                     w={"100%"}

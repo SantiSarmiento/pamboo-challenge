@@ -27,8 +27,8 @@ const Tareas = () => {
                     }}>
 
                         {
-                            tareas.map(({ nombre, estado, descripcion, fecha, hora }, index) => {
-                                return <Tarea key={index} nombre={nombre} estado={estado} descripcion={descripcion} fecha={fecha} hora={hora} eliminado={false} />
+                            tareas.map(({ nombre, estado, descripcion, fecha, hora, color }, index) => {
+                                return <Tarea key={index} nombre={nombre} estado={estado} descripcion={descripcion} fecha={fecha} hora={hora} eliminado={false} color={color} />
                             })
                         }
 

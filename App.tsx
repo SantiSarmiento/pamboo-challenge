@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { store } from "./src/store/store";
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore } from 'redux-persist'
-import { botones, titulos } from "./src/helpers/Colors";
+import { naranja_oscuro } from "./src/helpers/Colors";
 
 
 let persistor = persistStore(store)
@@ -35,7 +35,7 @@ const theme = extendTheme({
   },
   colors: {
     custom: {
-      600: botones,
+      600: naranja_oscuro,
     },
   },
   components: {

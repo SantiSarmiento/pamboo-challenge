@@ -1,6 +1,6 @@
 import React from 'react';
 import { HStack, HamburgerIcon, Text, VStack } from "native-base";
-import { titulos } from "../../helpers/Colors"
+import { naranja_oscuro } from "../../helpers/Colors"
 import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -22,14 +22,14 @@ const Header = ({ titulo }) => {
             {
                 titulo
                     ?
-                    <Text fontSize={"xl"} fontWeight={"medium"} color={titulos} >{titulo}</Text>
+                    <Text fontSize={"xl"} fontWeight={"medium"} color={naranja_oscuro} >{titulo}</Text>
                     :
                     <HStack>
                         <Text fontSize={"xl"} fontWeight={"medium"}>{obtenerFechaFormateada()}</Text>
                     </HStack>
             }
             <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                <HamburgerIcon color={titulos} size={"xl"} />
+                <HamburgerIcon color={naranja_oscuro} size={"xl"} />
             </TouchableOpacity>
         </HStack>
     )

@@ -1,22 +1,34 @@
 import React, { useState } from "react"
-import { CloseIcon, HStack, Pressable, Text, View } from "native-base"
+import { CloseIcon, HStack, Pressable, Text, View, Actionsheet } from "native-base"
 import { StyleSheet } from "react-native"
 import { useSelector, useDispatch } from 'react-redux';
 import { agregarTarea } from "../../store/tareas/tareasSlice";
 import Svg, { Path } from "react-native-svg"
 import CustomInput from "../../components/input/CustomInput";
-import { titulos } from "../../helpers/Colors";
+import { verde_claro, naranja_oscuro, amarillo, naranja_claro } from "../../helpers/Colors";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import CustomButton from "../../components/button/CustomButton";
 
+const ColorsPicker = ({ isOpen, onClose, setColor }) => {
+    return (
+        <Actionsheet isOpen={isOpen} onClose={onClose}>
+            <Actionsheet.Content>
+                <Actionsheet.Item onPress={() => { setColor(0), onClose() }} bgColor={amarillo}>Amarillo</Actionsheet.Item>
+                <Actionsheet.Item m={4} onPress={() => { setColor(1), onClose() }} bgColor={naranja_claro}>Naranja</Actionsheet.Item>
+                <Actionsheet.Item onPress={() => { setColor(2), onClose() }} bgColor={verde_claro}>Verde</Actionsheet.Item>
+            </Actionsheet.Content>
+        </Actionsheet>
+    )
+}
 
 const AgregarTarea = ({ navigation }) => {
 
     const dispatch = useDispatch()
-    const tareas = useSelector((state: RootState) => state.tareas.tareas)
+    const tareas = useSelector((state) => state.tareas.tareas)
 
     const [datePicker, setDatePicker] = useState(false)
     const [timePicker, setTimePicker] = useState(false)
+    const [colorPicker, setColorPicker] = useState(false)
 
     const [nuevaTarea, setNuevaTarea] = useState({
         nombre: "",
@@ -28,7 +40,7 @@ const AgregarTarea = ({ navigation }) => {
     })
     const [error, setError] = useState("")
 
-    const handleDateChange = (event: { type: any; nativeEvent: any; }) => {
+    const handleDateChange = (event) => {
         if (event.type === "dismissed") {
             setDatePicker(false)
         } else {
@@ -41,7 +53,7 @@ const AgregarTarea = ({ navigation }) => {
         }
     }
 
-    const handleTimeChange = (event: { type: any; nativeEvent: any; }) => {
+    const handleTimeChange = (event) => {
         if (event.type === "dismissed") {
             setTimePicker(false);
         } else {
@@ -86,7 +98,7 @@ const AgregarTarea = ({ navigation }) => {
                     viewBox="0 0 1440 320"
                 >
                     <Path
-                        fill={titulos}
+                        fill={naranja_oscuro}
                         d="M0,64L120,101.3C240,139,480,213,720,213.3C960,213,1200,139,1320,101.3L1440,64L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"
                     />
                 </Svg>
@@ -96,7 +108,7 @@ const AgregarTarea = ({ navigation }) => {
 
             <CustomInput
                 value={nuevaTarea.nombre}
-                setValue={(text: any) => setNuevaTarea({ ...nuevaTarea, nombre: text })}
+                setValue={(text) => setNuevaTarea({ ...nuevaTarea, nombre: text })}
                 label={"Nombre"}
                 placeholder={"Nombre de la tarea"}
                 error={error}
@@ -105,7 +117,7 @@ const AgregarTarea = ({ navigation }) => {
             />
             <CustomInput
                 value={nuevaTarea.descripcion}
-                setValue={(text: any) => setNuevaTarea({ ...nuevaTarea, descripcion: text })}
+                setValue={(text) => setNuevaTarea({ ...nuevaTarea, descripcion: text })}
                 label={"Descripcion"}
                 placeholder={"Añade algunas notas"}
                 error={""}
@@ -127,6 +139,15 @@ const AgregarTarea = ({ navigation }) => {
                     </View>
                 </Pressable>
             </HStack>
+
+            <Pressable onPress={() => setColorPicker(true)} mt={10}>
+                <View w={"90%"} alignSelf={"center"}>
+                    <Text>Color</Text>
+                    <View borderBottomWidth={2} borderBottomColor={"gray.300"}>
+                        <Text fontSize={"md"} p={2}>{nuevaTarea.color === "" ? "" : nuevaTarea.color === 0 ? "Amarillo" : nuevaTarea.color === 1 ? "Naranja" : "verde"}</Text>
+                    </View>
+                </View>
+            </Pressable>
 
             <View style={styles.buttonContainer}>
                 <CustomButton
@@ -157,6 +178,7 @@ const AgregarTarea = ({ navigation }) => {
             <View position={"absolute"} top={5} left={5}>
                 <CloseIcon onPress={() => navigation.goBack()} color={"white"} size={"lg"} />
             </View>
+            <ColorsPicker isOpen={colorPicker} onClose={() => setColorPicker(false)} setColor={(color) => setNuevaTarea({ ...nuevaTarea, color: color })} />
         </View>
     )
 }
@@ -165,7 +187,7 @@ export default AgregarTarea
 
 const styles = StyleSheet.create({
     box: {
-        backgroundColor: titulos,
+        backgroundColor: naranja_oscuro,
         height: 60
     },
     buttonContainer: {

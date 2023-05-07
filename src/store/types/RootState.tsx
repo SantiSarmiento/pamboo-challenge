@@ -11,4 +11,5 @@ interface Tarea {
     descripcion: string;
     fecha: string;
     hora: string;
+    color: number
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Center, Checkbox, HStack, Pressable, Text, VStack, View } from "native-base";
 import { useDispatch } from "react-redux";
 import { borrarDefinitivo, borrarTarea, modificarEstado, recuperar } from "../../store/tareas/tareasSlice";
-import { completadas } from "../../helpers/Colors";
+import { amarillo, naranja_claro, naranja_oscuro, verde_claro } from "../../helpers/Colors";
 import { Swipeable } from "react-native-gesture-handler";
 import { Animated } from "react-native";
 import CustomModal from "../modal/CustomModal";
@@ -68,7 +68,7 @@ const RecuperarTarea = ({ nombre }) => {
     )
 }
 
-const Tarea = ({ nombre, estado, descripcion, fecha, hora, eliminado }) => {
+const Tarea = ({ nombre, estado, descripcion, fecha, hora, eliminado, color }) => {
 
     const dispatch = useDispatch();
 
@@ -80,6 +80,7 @@ const Tarea = ({ nombre, estado, descripcion, fecha, hora, eliminado }) => {
                 descripcion: descripcion,
                 fecha: fecha,
                 hora: hora,
+                color: color
             })
         );
     };
@@ -151,12 +152,13 @@ const Tarea = ({ nombre, estado, descripcion, fecha, hora, eliminado }) => {
         );
     };
 
+    const colores = [amarillo, naranja_claro, verde_claro]
 
     return (
         <View width={"90%"} mt={4}>
             <Swipeable renderRightActions={renderRightActions}>
                 <HStack
-                    bgColor={estado === 1 ? completadas : "#f4f4f4"}
+                    bgColor={color === "" ? "#f4f4f4" : colores[color]}
                     p={2}
                     w={"100%"}
                     alignItems={"center"}

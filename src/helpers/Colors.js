@@ -1,4 +1,4 @@
-export const titulos = "#fe9f24"
-export const completadas = "#d8f5d9"
-export const botones = "#fe9f24"
+export const naranja_oscuro = "#fe9f24"
+export const verde_claro = "#d8f5d9"
 export const naranja_claro = "#ffecd3"
+export const amarillo = "#fff8d3"

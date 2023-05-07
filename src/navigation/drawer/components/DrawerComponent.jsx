@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Box, Pressable, Text, View } from "native-base";
+import { Box, Text, View } from "native-base";
 import { StyleSheet } from "react-native"
-import { naranja_claro, titulos } from "../../../helpers/Colors";
+import { naranja_claro, naranja_oscuro } from "../../../helpers/Colors";
 import { drawerScreens } from "./DrawerScreens";
 import { useNavigation } from "@react-navigation/native";
+import { TouchableOpacity } from 'react-native';
 
 const DrawerComponent = ({ state }) => {
 
@@ -27,14 +28,20 @@ const DrawerComponent = ({ state }) => {
             <View style={styles.user}>
 
             </View>
+            <TouchableOpacity onPress={() => navigation.navigate("tareas")}>
+                <View style={selectedScreen === "" ? styles.selected_items_list : styles.items_list}>
+                    <Text fontSize={"lg"} color={selectedScreen === "" ? "white" : "black"}>{capitalizeFirstLetter("Home")}</Text>
+                </View>
+            </TouchableOpacity>
             {
                 drawerScreens.map((item, index) => {
                     return (
-                        <View key={index} style={selectedScreen === item.name ? styles.selected_items_list : styles.items_list}>
-                            <Pressable onPress={() => navigation.navigate(item.name)}>
+                        <TouchableOpacity key={index} onPress={() => navigation.navigate(item.name)}>
+                            <View key={index} style={selectedScreen === item.name ? styles.selected_items_list : styles.items_list}>
                                 <Text fontSize={"lg"} color={selectedScreen === item.name ? "white" : "black"}>{capitalizeFirstLetter(item.name)}</Text>
-                            </Pressable>
-                        </View>
+                            </View>
+                        </TouchableOpacity>
+
                     )
                 })
             }
@@ -66,7 +73,7 @@ const styles = StyleSheet.create({
         padding: 15
     },
     selected_items_list: {
-        backgroundColor: titulos,
+        backgroundColor: naranja_oscuro,
         padding: 15
     },
 
