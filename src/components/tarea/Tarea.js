@@ -8,12 +8,13 @@ import { Animated } from "react-native";
 import CustomModal from "../modal/CustomModal";
 import CustomButton from "../button/CustomButton";
 
-const ConfirmarBorrar = ({ nombre }) => {
+const ConfirmarBorrar = ({ nombre, closeModal }) => {
 
     const dispatch = useDispatch();
 
     const confirmar = () => {
         dispatch(borrarTarea(nombre))
+        closeModal()
     }
 
     return (
@@ -28,12 +29,13 @@ const ConfirmarBorrar = ({ nombre }) => {
     )
 }
 
-const EliminarDefinitivamente = ({ nombre }) => {
+const EliminarDefinitivamente = ({ nombre, closeModal }) => {
 
     const dispatch = useDispatch();
 
     const confirmar = () => {
         dispatch(borrarDefinitivo(nombre))
+        closeModal()
     }
 
     return (
@@ -48,12 +50,13 @@ const EliminarDefinitivamente = ({ nombre }) => {
     )
 }
 
-const RecuperarTarea = ({ nombre }) => {
+const RecuperarTarea = ({ nombre, closeModal }) => {
 
     const dispatch = useDispatch();
 
     const confirmar = () => {
         dispatch(recuperar(nombre))
+        closeModal()
     }
 
     return (
@@ -92,7 +95,7 @@ const Tarea = ({ nombre, estado, descripcion, fecha, hora, eliminado, color }) =
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
-    const renderRightActions = (progress, dragX) => {
+    const renderRightActions = (dragX) => {
         const trans = dragX.interpolate({
             inputRange: [0, 50],
             outputRange: [0, -50],
@@ -189,8 +192,8 @@ const Tarea = ({ nombre, estado, descripcion, fecha, hora, eliminado, color }) =
                     </Text>
                 </HStack>
             </Swipeable>
-            <CustomModal showModal={showModal} close={() => setShowModal(false)} titulo={eliminado ? "Borrar definitivamente ?" : "Desea borrar la tarea ?"} children={eliminado ? <EliminarDefinitivamente nombre={nombre} /> : <ConfirmarBorrar nombre={nombre} />} />
-            <CustomModal showModal={recuperarModal} close={() => setRecuperarModal(false)} titulo={"Desea recuperar su tarea ?"} children={<RecuperarTarea nombre={nombre} />} />
+            <CustomModal showModal={showModal} close={() => setShowModal(false)} titulo={eliminado ? "Borrar definitivamente ?" : "Desea borrar la tarea ?"} children={eliminado ? <EliminarDefinitivamente nombre={nombre} closeModal={() => setShowModal(false)} /> : <ConfirmarBorrar nombre={nombre} closeModal={() => setShowModal(false)} />} />
+            <CustomModal showModal={recuperarModal} close={() => setRecuperarModal(false)} titulo={"Desea recuperar su tarea ?"} children={<RecuperarTarea nombre={nombre} closeModal={() => setRecuperarModal(false)} />} />
         </View>
     );
 };
