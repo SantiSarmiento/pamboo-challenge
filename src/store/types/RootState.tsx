@@ -1,5 +1,6 @@
 interface RootState {
     tareas: {
+        borradas: Tarea[];
         tareas: Tarea[];
     };
 }

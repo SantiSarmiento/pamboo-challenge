@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Center, Checkbox, HStack, Pressable, Text, VStack, View } from "native-base";
 import { useDispatch } from "react-redux";
-import { borrarTarea, modificarEstado } from "../../store/tareas/tareasSlice";
+import { borrarDefinitivo, borrarTarea, modificarEstado, recuperar } from "../../store/tareas/tareasSlice";
 import { completadas } from "../../helpers/Colors";
 import { Swipeable } from "react-native-gesture-handler";
 import { Animated } from "react-native";
@@ -28,7 +28,47 @@ const ConfirmarBorrar = ({ nombre }) => {
     )
 }
 
-const Tarea = ({ nombre, estado, descripcion, fecha, hora }) => {
+const EliminarDefinitivamente = ({ nombre }) => {
+
+    const dispatch = useDispatch();
+
+    const confirmar = () => {
+        dispatch(borrarDefinitivo(nombre))
+    }
+
+    return (
+        <View>
+            <Text fontSize={"md"} mb={5}>Esta accion no se puede deshacer.</Text>
+            <CustomButton
+                titulo={"Confirmar"}
+                callBack={confirmar}
+                disabled={false}
+            />
+        </View>
+    )
+}
+
+const RecuperarTarea = ({ nombre }) => {
+
+    const dispatch = useDispatch();
+
+    const confirmar = () => {
+        dispatch(recuperar(nombre))
+    }
+
+    return (
+        <View>
+            <Text fontSize={"md"} mb={5}>Su tarea estara nuevamente disponible.</Text>
+            <CustomButton
+                titulo={"Confirmar"}
+                callBack={confirmar}
+                disabled={false}
+            />
+        </View>
+    )
+}
+
+const Tarea = ({ nombre, estado, descripcion, fecha, hora, eliminado }) => {
 
     const dispatch = useDispatch();
 
@@ -45,50 +85,81 @@ const Tarea = ({ nombre, estado, descripcion, fecha, hora }) => {
     };
 
     const [showModal, setShowModal] = useState(false)
+    const [recuperarModal, setRecuperarModal] = useState(false)
 
     function capitalizar(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
     const renderRightActions = (progress, dragX) => {
-
         const trans = dragX.interpolate({
             inputRange: [0, 50],
             outputRange: [0, -50],
             extrapolate: "clamp",
         });
 
-        return (
-            <Animated.View
-                style={{
-                    transform: [{ translateX: trans }],
-                }}
-            >
+        const handleEliminar = () => {
+            setShowModal(true);
+        };
 
-                <Pressable
-                    bgColor={"red.500"}
-                    w={100}
-                    mt={4}
-                    h={"90%"}
-                    alignItems={"center"}
-                    justifyContent={"center"}
-                    onPress={() => setShowModal(true)}
-                >
-                    <Text style={{ color: "white" }}>Eliminar</Text>
-                </Pressable>
+        const handleRecuperar = () => {
+            setRecuperarModal(true)
+        };
+
+        return (
+            <Animated.View style={{ transform: [{ translateX: trans }] }}>
+                {eliminado ? (
+                    <HStack>
+                        <View>
+                            <Pressable
+                                bgColor="red.500"
+                                w={100}
+                                h="100%"
+                                alignItems="center"
+                                justifyContent="center"
+                                onPress={handleEliminar}
+                            >
+                                <Text style={{ color: "white" }}>Eliminar</Text>
+                            </Pressable>
+                        </View>
+                        <View>
+                            <Pressable
+                                bgColor="success.500"
+                                w={100}
+                                h="100%"
+                                alignItems="center"
+                                justifyContent="center"
+                                onPress={handleRecuperar}
+                            >
+                                <Text style={{ color: "white" }}>Recuperar</Text>
+                            </Pressable>
+                        </View>
+                    </HStack>
+                ) : (
+                    <Pressable
+                        bgColor="red.500"
+                        w={100}
+                        h="100%"
+                        alignItems="center"
+                        justifyContent="center"
+                        onPress={handleEliminar}
+                    >
+                        <Text style={{ color: "white" }}>Eliminar</Text>
+                    </Pressable>
+                )}
             </Animated.View>
         );
     };
 
+
     return (
-        <View width={"90%"}>
+        <View width={"90%"} mt={4}>
             <Swipeable renderRightActions={renderRightActions}>
                 <HStack
                     bgColor={estado === 1 ? completadas : "#f4f4f4"}
                     p={2}
                     w={"100%"}
                     alignItems={"center"}
-                    mt={4}
                 >
                     <Checkbox
                         isChecked={estado === 1}
@@ -96,6 +167,7 @@ const Tarea = ({ nombre, estado, descripcion, fecha, hora }) => {
                         accessibilityLabel={nombre}
                         colorScheme={"green"}
                         onChange={modificarEstadoTarea}
+                        isDisabled={eliminado}
                     />
                     <VStack>
                         <Text
@@ -115,7 +187,8 @@ const Tarea = ({ nombre, estado, descripcion, fecha, hora }) => {
                     </Text>
                 </HStack>
             </Swipeable>
-            <CustomModal showModal={showModal} close={() => setShowModal(false)} titulo={"Desea borrar la tarea ?"} children={<ConfirmarBorrar nombre={nombre} />} />
+            <CustomModal showModal={showModal} close={() => setShowModal(false)} titulo={eliminado ? "Borrar definitivamente ?" : "Desea borrar la tarea ?"} children={eliminado ? <EliminarDefinitivamente nombre={nombre} /> : <ConfirmarBorrar nombre={nombre} />} />
+            <CustomModal showModal={recuperarModal} close={() => setRecuperarModal(false)} titulo={"Desea recuperar su tarea ?"} children={<RecuperarTarea nombre={nombre} />} />
         </View>
     );
 };

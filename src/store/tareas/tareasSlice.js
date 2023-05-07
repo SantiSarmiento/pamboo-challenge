@@ -31,9 +31,28 @@ export const tareasSlice = createSlice({
             state.borradas = [...state.borradas, tareaBorrada];
 
         },
+        borrarDefinitivo: (state, action) => {
+            const tareaNombre = action.payload;
+            state.borradas = state.borradas.filter(
+                (tarea) => tarea.nombre.toLowerCase() !== tareaNombre.toLowerCase()
+            );
+        },
+        recuperar: (state, action) => {
+            const tareaNombre = action.payload;
+            const tareaRecuperada = state.borradas.find(
+                (tarea) => tarea.nombre.toLowerCase() === tareaNombre.toLowerCase()
+            );
+
+            if (tareaRecuperada) {
+                state.borradas = state.borradas.filter(
+                    (tarea) => tarea.nombre.toLowerCase() !== tareaNombre.toLowerCase()
+                );
+                state.tareas = [...state.tareas, tareaRecuperada];
+            }
+        },
     },
 })
 
-export const { agregarTarea, modificarEstado, borrarTarea } = tareasSlice.actions
+export const { agregarTarea, modificarEstado, borrarTarea, borrarDefinitivo, recuperar } = tareasSlice.actions
 
 export default tareasSlice.reducer

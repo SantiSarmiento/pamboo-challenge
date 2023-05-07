@@ -7,6 +7,7 @@ const obtenerImagen = (nombre) => {
         case 'pendientes': return require('../../../assets/icons/pendientes.png')
         case 'completadas': return require('../../../assets/icons/completadas.png')
         case 'tareas': return require('../../../assets/icons/tareas.png')
+        case 'no-data': return require('../../../assets/icons/no-data.png')
     }
 }
 

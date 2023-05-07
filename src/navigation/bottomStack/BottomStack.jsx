@@ -7,6 +7,7 @@ import { Text } from 'native-base';
 //screens
 import { BottomScreens } from "./components/BottomScreens";
 import CustomIcon from "../../components/icon/CustomIcon";
+import { naranja_claro } from "../../helpers/Colors";
 
 const BottomNavigator = createBottomTabNavigator()
 
@@ -71,7 +72,7 @@ const BottomStack = () => {
                                     const boxStyle = {
                                         backgroundColor: animation.interpolate({
                                             inputRange: [0, 1],
-                                            outputRange: ['rgb(255,255,255)', '#ffecd3'],
+                                            outputRange: ['rgb(255,255,255)', naranja_claro],
                                         }),
                                     };
 
