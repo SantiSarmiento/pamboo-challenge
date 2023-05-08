@@ -9,11 +9,14 @@ const CustomInput = ({
     placeholder,
     error,
     errorMessage,
-    width
+    width,
+    boxStyles,
+    variant
 }) => {
 
+    console.log(boxStyles)
     return (
-        <Box alignItems="center" w={"100%"} mt={10}>
+        <Box alignItems="center" w={"100%"} style={boxStyles}>
             <FormControl isInvalid={error} w={width ? width : "75%"}>
                 <FormControl.Label style={{ color: naranja_oscuro }}>{label}</FormControl.Label>
                 <Input
@@ -21,11 +24,12 @@ const CustomInput = ({
                     onChangeText={(text) => setValue(text)}
                     placeholder={placeholder}
                     //style
-                    variant={"underlined"}
+                    variant={variant ? variant : "underlined"}
                     focusOutlineColor={error ? "#e3001b" : naranja_oscuro}
                     borderColor={error ? "#e3001b" : "gray.400"}
                     fontSize={"md"}
                     w={"100%"}
+                    backgroundColor={"white"}
                 />
                 <FormControl.ErrorMessage alignSelf={"center"} leftIcon={<WarningOutlineIcon size="xs" />}>
                     {errorMessage}

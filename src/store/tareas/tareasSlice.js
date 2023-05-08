@@ -50,9 +50,13 @@ export const tareasSlice = createSlice({
                 state.tareas = [...state.tareas, tareaRecuperada];
             }
         },
+        eliminarTodo: (state) => {
+            state.tareas = []
+            state.borradas = []
+        }
     },
 })
 
-export const { agregarTarea, modificarEstado, borrarTarea, borrarDefinitivo, recuperar } = tareasSlice.actions
+export const { agregarTarea, modificarEstado, borrarTarea, borrarDefinitivo, recuperar, eliminarTodo } = tareasSlice.actions
 
 export default tareasSlice.reducer

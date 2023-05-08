@@ -32,6 +32,8 @@ const Registro = () => {
                     error={undefined}
                     errorMessage={undefined}
                     width={"90%"}
+                    boxStyles={{ marginTop: 10 }}
+                    variant={undefined}
                 />
             </View>
             <CustomButton titulo={"Comenzar"} callBack={iniciarSesion} disabled={nuevoUsuario.nombre === ""} width={"90%"} styles={{ marginBottom: 10 }} />

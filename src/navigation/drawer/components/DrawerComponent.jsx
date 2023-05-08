@@ -8,13 +8,37 @@ import { TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from "react-redux";
 import CustomAvatars from "../../../components/avatar/CustomAvatar";
 import { eliminarUsuario } from "../../../store/usuario/usuarioSlice";
+import { eliminarTodo } from "../../../store/tareas/tareasSlice";
+import CustomModal from "../../../components/modal/CustomModal";
+import CustomButton from "../../../components/button/CustomButton";
+
+const CerrarSesion = ({ closeModal }) => {
+    const dispatch = useDispatch();
+
+    const confirmar = () => {
+        dispatch(eliminarUsuario())
+        dispatch(eliminarTodo())
+        closeModal()
+    }
+
+    return (
+        <View>
+            <Text fontSize={"md"} mb={5}>Si lo hace, perdera toda su información guardada.</Text>
+            <CustomButton
+                titulo={"Confirmar"}
+                callBack={confirmar}
+                disabled={false}
+            />
+        </View>
+    )
+}
 
 const DrawerComponent = ({ state }) => {
 
-    const dispatch = useDispatch()
     const usuario = useSelector((state) => state.usuario)
     const navigation = useNavigation()
     const [selectedScreen, setSelectedScreen] = useState("")
+    const [showModal, setShowModal] = useState(false)
 
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -32,7 +56,7 @@ const DrawerComponent = ({ state }) => {
         <Box style={styles.container}>
             <View flex={1}>
                 <View style={styles.user}>
-                    <CustomAvatars size={"xl"} imagen={usuario.foto} />
+                    <CustomAvatars size={"xl"} imagen={usuario.foto ? usuario.foto : "https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png"} />
                     <Text fontSize={"xl"} fontWeight={"medium"} color={"white"}>{capitalizeFirstLetter(usuario.nombre)}</Text>
 
                 </View>
@@ -54,11 +78,10 @@ const DrawerComponent = ({ state }) => {
                     })
                 }
             </View>
-            <TouchableOpacity onPress={() => dispatch(eliminarUsuario())}>
-                <View >
-                    <Text fontSize={"lg"} p={15} >Cerrar sesion</Text>
-                </View>
+            <TouchableOpacity onPress={() => setShowModal(true)}>
+                <Text fontSize={"lg"} p={15} >Cerrar sesion</Text>
             </TouchableOpacity>
+            <CustomModal showModal={showModal} close={() => setShowModal(false)} titulo={"Desea cerrar sesion?"} children={<CerrarSesion closeModal={() => setShowModal(false)} />} />
         </Box>
     )
 }

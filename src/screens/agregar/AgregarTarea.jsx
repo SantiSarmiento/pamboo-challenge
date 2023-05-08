@@ -114,6 +114,8 @@ const AgregarTarea = ({ navigation }) => {
                 error={error}
                 errorMessage={error}
                 width={"90%"}
+                boxStyles={styles.boxStyles}
+                variant={"outline"}
             />
             <CustomInput
                 value={nuevaTarea.descripcion}
@@ -123,28 +125,30 @@ const AgregarTarea = ({ navigation }) => {
                 error={""}
                 errorMessage={""}
                 width={"90%"}
+                boxStyles={styles.boxStyles}
+                variant={"outline"}
             />
 
-            <HStack justifyContent={"space-between"} w={"90%"} alignSelf={"center"} mt={10} space={10}>
+            <HStack justifyContent={"space-between"} w={"90%"} alignSelf={"center"} style={styles.boxStyles} space={10}>
                 <Pressable flex={1} onPress={() => setDatePicker(true)}>
-                    <Text>Fecha</Text>
-                    <View borderBottomWidth={2} borderBottomColor={"gray.300"}>
-                        <Text fontSize={"md"} p={2}>{nuevaTarea.fecha}</Text>
+                    <Text mb={0.5}>Fecha</Text>
+                    <View borderWidth={1} borderColor={"gray.400"} borderRadius={5}>
+                        <Text color={nuevaTarea.fecha === "" ? "gray.400" : "black"} fontSize={"md"} p={2}>{nuevaTarea.fecha === "" ? "Modificar" : nuevaTarea.fecha}</Text>
                     </View>
                 </Pressable>
                 <Pressable flex={1} onPress={() => setTimePicker(true)}>
-                    <Text>Hora</Text>
-                    <View borderBottomWidth={2} borderBottomColor={"gray.300"}>
-                        <Text fontSize={"md"} p={2}>{nuevaTarea.hora}</Text>
+                    <Text mb={0.5}>Hora</Text>
+                    <View borderWidth={1} borderColor={"gray.400"} borderRadius={5}>
+                        <Text color={nuevaTarea.hora === "" ? "gray.400" : "black"} fontSize={"md"} p={2}>{nuevaTarea.hora === "" ? "Modificar" : nuevaTarea.hora}</Text>
                     </View>
                 </Pressable>
             </HStack>
 
-            <Pressable onPress={() => setColorPicker(true)} mt={10}>
+            <Pressable onPress={() => setColorPicker(true)} style={styles.boxStyles}>
                 <View w={"90%"} alignSelf={"center"}>
-                    <Text>Color</Text>
-                    <View borderBottomWidth={2} borderBottomColor={"gray.300"}>
-                        <Text fontSize={"md"} p={2}>{nuevaTarea.color === "" ? "" : nuevaTarea.color === 0 ? "Amarillo" : nuevaTarea.color === 1 ? "Naranja" : "verde"}</Text>
+                    <Text mb={0.5}>Color</Text>
+                    <View borderWidth={1} borderColor={"gray.400"} borderRadius={5}>
+                        <Text fontSize={"md"} p={2} color={nuevaTarea.color === "" ? "gray.400" : "black"}>{nuevaTarea.color === "" ? "Presione para modificar" : nuevaTarea.color === 0 ? "Amarillo" : nuevaTarea.color === 1 ? "Naranja" : "verde"}</Text>
                     </View>
                 </View>
             </Pressable>
@@ -196,4 +200,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         width: "90%",
     },
+    boxStyles: {
+        marginTop: 25
+    }
 })
