@@ -4,7 +4,7 @@ import Header from "../../components/header/Header";
 import { useSelector } from 'react-redux';
 import Tarea from "../../components/tarea/Tarea";
 import CustomIcon from "../../components/icon/CustomIcon";
-import AgregarIcono from "../../components/agregarIcono/AgregarIcono";
+import AgregarIcono from "../../components/acciones/Acciones";
 
 const Eliminados = () => {
 

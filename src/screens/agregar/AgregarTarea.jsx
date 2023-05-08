@@ -44,11 +44,7 @@ const AgregarTarea = ({ navigation }) => {
         if (event.type === "dismissed") {
             setDatePicker(false)
         } else {
-            const fecha = new Date(event.nativeEvent.timestamp)
-            const dia = fecha.getDate().toString().padStart(2, '0');
-            const mes = (fecha.getMonth() + 1).toString().padStart(2, '0');
-            const anio = fecha.getFullYear().toString().slice(-2);
-            setNuevaTarea({ ...nuevaTarea, fecha: `${dia}/${mes}/${anio}` })
+            setNuevaTarea({ ...nuevaTarea, fecha: event.nativeEvent.timestamp })
             setDatePicker(false)
         }
     }
@@ -71,6 +67,15 @@ const AgregarTarea = ({ navigation }) => {
         }
     };
 
+    function formatearFecha(milisegundos) {
+        const fecha = new Date(milisegundos);
+        const dia = fecha.getDate().toString().padStart(2, '0');
+        const mes = (fecha.getMonth() + 1).toString().padStart(2, '0');
+        const año = fecha.getFullYear().toString();
+
+        return `${dia}/${mes}/${año}`;
+    }
+
 
     function buscarPorNombre() {
         for (let i in tareas) {
@@ -87,7 +92,6 @@ const AgregarTarea = ({ navigation }) => {
         dispatch(agregarTarea(nuevaTarea))
         navigation.goBack()
     }
-
 
     return (
         <View backgroundColor={"white"} height={"100%"} >
@@ -109,7 +113,7 @@ const AgregarTarea = ({ navigation }) => {
             <CustomInput
                 value={nuevaTarea.nombre}
                 setValue={(text) => setNuevaTarea({ ...nuevaTarea, nombre: text })}
-                label={"Nombre"}
+                label={"Nombre *"}
                 placeholder={"Nombre de la tarea"}
                 error={error}
                 errorMessage={error}
@@ -131,13 +135,13 @@ const AgregarTarea = ({ navigation }) => {
 
             <HStack justifyContent={"space-between"} w={"90%"} alignSelf={"center"} style={styles.boxStyles} space={10}>
                 <Pressable flex={1} onPress={() => setDatePicker(true)}>
-                    <Text mb={0.5}>Fecha</Text>
+                    <Text mb={0.5}>Fecha *</Text>
                     <View borderWidth={1} borderColor={"gray.400"} borderRadius={5}>
-                        <Text color={nuevaTarea.fecha === "" ? "gray.400" : "black"} fontSize={"md"} p={2}>{nuevaTarea.fecha === "" ? "Modificar" : nuevaTarea.fecha}</Text>
+                        <Text color={nuevaTarea.fecha === "" ? "gray.400" : "black"} fontSize={"md"} p={2}>{nuevaTarea.fecha === "" ? "Modificar *" : formatearFecha(nuevaTarea.fecha)}</Text>
                     </View>
                 </Pressable>
                 <Pressable flex={1} onPress={() => setTimePicker(true)}>
-                    <Text mb={0.5}>Hora</Text>
+                    <Text mb={0.5}>Hora *</Text>
                     <View borderWidth={1} borderColor={"gray.400"} borderRadius={5}>
                         <Text color={nuevaTarea.hora === "" ? "gray.400" : "black"} fontSize={"md"} p={2}>{nuevaTarea.hora === "" ? "Modificar" : nuevaTarea.hora}</Text>
                     </View>

@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { AddIcon, ScrollView, Text, View } from "native-base";
+import { ScrollView, Text, View } from "native-base";
 import Header from "../../components/header/Header";
 import { useSelector } from 'react-redux';
-import { naranja_oscuro } from "../../helpers/Colors";
 import CustomIcon from "../../components/icon/CustomIcon";
 import Tarea from "../../components/tarea/Tarea";
-import AgregarIcono from "../../components/agregarIcono/AgregarIcono";
-
+import Acciones from "../../components/acciones/Acciones";
 
 const Pendientes = () => {
 
@@ -48,7 +46,7 @@ const Pendientes = () => {
                     </ScrollView>
             }
 
-            <AgregarIcono />
+            <Acciones />
         </View>
     )
 }

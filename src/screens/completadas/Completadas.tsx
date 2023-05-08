@@ -4,6 +4,7 @@ import Header from "../../components/header/Header";
 import { useSelector } from 'react-redux';
 import CustomIcon from "../../components/icon/CustomIcon";
 import Tarea from "../../components/tarea/Tarea";
+import Acciones from "../../components/acciones/Acciones";
 
 const Completadas = () => {
 
@@ -45,6 +46,7 @@ const Completadas = () => {
 
                     </ScrollView>
             }
+            <Acciones />
         </View>
     )
 }

@@ -14,7 +14,7 @@ interface Tarea {
     estado: number;
     nombre: string;
     descripcion: string;
-    fecha: string;
+    fecha: number;
     hora: string;
     color: number
 }

@@ -14,7 +14,6 @@ const CustomInput = ({
     variant
 }) => {
 
-    console.log(boxStyles)
     return (
         <Box alignItems="center" w={"100%"} style={boxStyles}>
             <FormControl isInvalid={error} w={width ? width : "75%"}>

@@ -53,10 +53,27 @@ export const tareasSlice = createSlice({
         eliminarTodo: (state) => {
             state.tareas = []
             state.borradas = []
-        }
+        },
+        ordenarPorFecha: (state) => {
+            state.tareas.sort((a, b) => a.fecha - b.fecha)
+            state.borradas.sort((a, b) => a.fecha - b.fecha)
+        },
+        ordenarPorNombre: (state) => {
+            state.tareas.sort((a, b) => {
+                const nombreA = a.nombre.toLowerCase().split(' ')[0];
+                const nombreB = b.nombre.toLowerCase().split(' ')[0];
+                return nombreA.localeCompare(nombreB);
+            });
+
+            state.borradas.sort((a, b) => {
+                const nombreA = a.nombre.toLowerCase().split(' ')[0];
+                const nombreB = b.nombre.toLowerCase().split(' ')[0];
+                return nombreA.localeCompare(nombreB);
+            });
+        },
     },
 })
 
-export const { agregarTarea, modificarEstado, borrarTarea, borrarDefinitivo, recuperar, eliminarTodo } = tareasSlice.actions
+export const { agregarTarea, modificarEstado, borrarTarea, borrarDefinitivo, recuperar, eliminarTodo, ordenarPorFecha, ordenarPorNombre } = tareasSlice.actions
 
 export default tareasSlice.reducer

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Center, Checkbox, HStack, Pressable, Text, VStack, View } from "native-base";
+import { Checkbox, HStack, Pressable, Text, VStack, View } from "native-base";
 import { useDispatch } from "react-redux";
 import { borrarDefinitivo, borrarTarea, modificarEstado, recuperar } from "../../store/tareas/tareasSlice";
-import { amarillo, naranja_claro, naranja_oscuro, verde_claro } from "../../helpers/Colors";
+import { amarillo, naranja_claro, verde_claro } from "../../helpers/Colors";
 import { Swipeable } from "react-native-gesture-handler";
 import { Animated } from "react-native";
 import CustomModal from "../modal/CustomModal";

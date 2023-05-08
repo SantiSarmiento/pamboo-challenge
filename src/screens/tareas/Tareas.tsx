@@ -4,7 +4,7 @@ import Header from "../../components/header/Header";
 import { useSelector } from 'react-redux';
 import Tarea from "../../components/tarea/Tarea";
 import CustomIcon from "../../components/icon/CustomIcon";
-import AgregarIcono from "../../components/agregarIcono/AgregarIcono";
+import Acciones from "../../components/acciones/Acciones";
 
 const Tareas = () => {
 
@@ -13,7 +13,6 @@ const Tareas = () => {
     return (
         <View bgColor={"white"} h={"100%"} w={"100%"}>
             <Header titulo={"Mis tareas"} />
-
             {
                 tareas.length === 0
                     ?
@@ -35,7 +34,7 @@ const Tareas = () => {
                     </ScrollView>
             }
 
-            <AgregarIcono />
+            <Acciones />
         </View>
     )
 }
