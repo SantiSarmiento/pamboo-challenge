@@ -28,7 +28,7 @@ const Pendientes = () => {
                     ?
                     <View alignSelf={"center"} justifyContent={"center"} alignItems={"center"} flex={1}>
                         <CustomIcon nombre={"check-list"} size={"2xl"} width={undefined} heigth={undefined} margin={undefined} />
-                        <Text fontSize={"xl"}>No se econtraron tareas pendientes</Text>
+                        <Text fontSize={"xl"}>No se encontraron tareas pendientes</Text>
                     </View>
                     :
                     <ScrollView contentContainerStyle={{

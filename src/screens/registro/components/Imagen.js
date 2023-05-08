@@ -37,7 +37,7 @@ const Imagen = ({ imagen, setImagen }) => {
                 <CustomAvatars size={"2xl"} imagen={imagen ? imagen : "https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png"} />
             </Pressable >
             <Pressable onPress={abrirGaleria}>
-                <Text mt={2} underline>Abrir galeria</Text>
+                <Text mt={2} underline>Abrir galería</Text>
             </Pressable>
         </>
     )

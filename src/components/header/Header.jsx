@@ -10,9 +10,9 @@ const Header = ({ titulo }) => {
 
     return (
         <HStack alignItems={"center"} justifyContent={"space-between"} w={"90%"} alignSelf={"center"} mt={8}>
-            <Text fontSize={"xl"} fontWeight={"medium"} color={naranja_oscuro} >{titulo}</Text>
+            <Text fontSize={"2xl"} fontWeight={"medium"} color={naranja_oscuro} >{titulo}</Text>
             <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                <HamburgerIcon color={naranja_oscuro} size={"xl"} />
+                <HamburgerIcon color={naranja_oscuro} size={"2xl"} />
             </TouchableOpacity>
         </HStack>
     )

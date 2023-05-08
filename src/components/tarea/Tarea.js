@@ -19,7 +19,7 @@ const ConfirmarBorrar = ({ nombre, closeModal }) => {
 
     return (
         <View>
-            <Text fontSize={"md"} mb={5}>Puede recuperarlas desde la pantalla de tareas borradas en el menu lateral.</Text>
+            <Text fontSize={"md"} mb={5}>Puede recuperarlas desde la pantalla de tareas borradas en el menú lateral.</Text>
             <CustomButton
                 titulo={"Confirmar"}
                 callBack={confirmar}
@@ -40,7 +40,7 @@ const EliminarDefinitivamente = ({ nombre, closeModal }) => {
 
     return (
         <View>
-            <Text fontSize={"md"} mb={5}>Esta accion no se puede deshacer.</Text>
+            <Text fontSize={"md"} mb={5}>Esta acción no se puede deshacer.</Text>
             <CustomButton
                 titulo={"Confirmar"}
                 callBack={confirmar}
@@ -61,7 +61,7 @@ const RecuperarTarea = ({ nombre, closeModal }) => {
 
     return (
         <View>
-            <Text fontSize={"md"} mb={5}>Su tarea estara nuevamente disponible.</Text>
+            <Text fontSize={"md"} mb={5}>Su tarea estará nuevamente disponible.</Text>
             <CustomButton
                 titulo={"Confirmar"}
                 callBack={confirmar}
@@ -197,8 +197,8 @@ const Tarea = ({ nombre, estado, descripcion, fecha, hora, eliminado, color }) =
                     </Text>
                 </HStack>
             </Swipeable>
-            <CustomModal showModal={showModal} close={() => setShowModal(false)} titulo={eliminado ? "Borrar definitivamente ?" : "Desea borrar la tarea ?"} children={eliminado ? <EliminarDefinitivamente nombre={nombre} closeModal={() => setShowModal(false)} /> : <ConfirmarBorrar nombre={nombre} closeModal={() => setShowModal(false)} />} />
-            <CustomModal showModal={recuperarModal} close={() => setRecuperarModal(false)} titulo={"Desea recuperar su tarea ?"} children={<RecuperarTarea nombre={nombre} closeModal={() => setRecuperarModal(false)} />} />
+            <CustomModal showModal={showModal} close={() => setShowModal(false)} titulo={eliminado ? "¿Borrar definitivamente?" : "¿Desea borrar la tarea?"} children={eliminado ? <EliminarDefinitivamente nombre={nombre} closeModal={() => setShowModal(false)} /> : <ConfirmarBorrar nombre={nombre} closeModal={() => setShowModal(false)} />} />
+            <CustomModal showModal={recuperarModal} close={() => setRecuperarModal(false)} titulo={"¿Desea recuperar su tarea?"} children={<RecuperarTarea nombre={nombre} closeModal={() => setRecuperarModal(false)} />} />
         </View>
     );
 };

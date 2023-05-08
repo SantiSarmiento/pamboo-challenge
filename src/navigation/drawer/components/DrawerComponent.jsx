@@ -23,7 +23,7 @@ const CerrarSesion = ({ closeModal }) => {
 
     return (
         <View>
-            <Text fontSize={"md"} mb={5}>Si lo hace, perdera toda su información guardada.</Text>
+            <Text fontSize={"md"} mb={5}>Si lo hace, perder toda su información.</Text>
             <CustomButton
                 titulo={"Confirmar"}
                 callBack={confirmar}
@@ -79,9 +79,9 @@ const DrawerComponent = ({ state }) => {
                 }
             </View>
             <TouchableOpacity onPress={() => setShowModal(true)}>
-                <Text fontSize={"lg"} p={15} >Cerrar sesion</Text>
+                <Text fontSize={"lg"} p={15} >Cerrar sesión</Text>
             </TouchableOpacity>
-            <CustomModal showModal={showModal} close={() => setShowModal(false)} titulo={"Desea cerrar sesion?"} children={<CerrarSesion closeModal={() => setShowModal(false)} />} />
+            <CustomModal showModal={showModal} close={() => setShowModal(false)} titulo={"¿Desea cerrar sesión?"} children={<CerrarSesion closeModal={() => setShowModal(false)} />} />
         </Box>
     )
 }

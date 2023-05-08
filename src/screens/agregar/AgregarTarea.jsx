@@ -124,7 +124,7 @@ const AgregarTarea = ({ navigation }) => {
             <CustomInput
                 value={nuevaTarea.descripcion}
                 setValue={(text) => setNuevaTarea({ ...nuevaTarea, descripcion: text })}
-                label={"Descripcion"}
+                label={"Descripción"}
                 placeholder={"Añade algunas notas"}
                 error={""}
                 errorMessage={""}
@@ -137,7 +137,7 @@ const AgregarTarea = ({ navigation }) => {
                 <Pressable flex={1} onPress={() => setDatePicker(true)}>
                     <Text mb={0.5}>Fecha *</Text>
                     <View borderWidth={1} borderColor={"gray.400"} borderRadius={5}>
-                        <Text color={nuevaTarea.fecha === "" ? "gray.400" : "black"} fontSize={"md"} p={2}>{nuevaTarea.fecha === "" ? "Modificar *" : formatearFecha(nuevaTarea.fecha)}</Text>
+                        <Text color={nuevaTarea.fecha === "" ? "gray.400" : "black"} fontSize={"md"} p={2}>{nuevaTarea.fecha === "" ? "Modificar" : formatearFecha(nuevaTarea.fecha)}</Text>
                     </View>
                 </Pressable>
                 <Pressable flex={1} onPress={() => setTimePicker(true)}>
