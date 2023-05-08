@@ -15,4 +15,12 @@ git clone https://github.com/SantiSarmiento/pamboo-challenge.git
 
 ``
 npm install
+cd ios
+pod install
+``
+
+4. Para ejecutar la aplicación en un dispositivo o emulador Android, ejecuta el siguiente comando:
+
+``
+npx react-native run-android
 ``
