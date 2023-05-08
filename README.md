@@ -15,7 +15,11 @@ git clone https://github.com/SantiSarmiento/pamboo-challenge.git
 
 ``
 npm install
+``
+``
 cd ios
+``
+``
 pod install
 ``
 
