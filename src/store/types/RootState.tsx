@@ -7,6 +7,7 @@ interface RootState {
         nombre: string;
         foto: string;
         activo: boolean;
+        primera_vez: boolean;
     }
 }
 

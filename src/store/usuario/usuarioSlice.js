@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     nombre: "",
     foto: "",
-    activo: false
+    activo: false,
+    primera_vez: true
 }
 
 export const usuarioSlice = createSlice({
@@ -19,10 +20,14 @@ export const usuarioSlice = createSlice({
             state.nombre = ""
             state.foto = ""
             state.activo = false
+            state.primera_vez = true
         },
+        desactivarInformacion: (state) => {
+            state.primera_vez = false
+        }
     },
 })
 
-export const { guardarUsuario, eliminarUsuario } = usuarioSlice.actions
+export const { guardarUsuario, eliminarUsuario, desactivarInformacion } = usuarioSlice.actions
 
 export default usuarioSlice.reducer
