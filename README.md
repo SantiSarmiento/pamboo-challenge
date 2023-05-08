@@ -28,3 +28,9 @@ pod install
 ``
 npx react-native run-android
 ``
+
+5. Para ejecutar la aplicación en un dispositivo o emulador IOS, ejecuta el siguiente comando:
+
+``
+npx react-native run-ios
+``
