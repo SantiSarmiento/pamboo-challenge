@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Checkbox, HStack, Pressable, Text, VStack, View } from "native-base";
 import { useDispatch } from "react-redux";
 import { borrarDefinitivo, borrarTarea, modificarEstado, recuperar } from "../../store/tareas/tareasSlice";
@@ -95,6 +95,9 @@ const Tarea = ({ nombre, estado, descripcion, fecha, hora, eliminado, color }) =
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
+
+    const swipeableRef = useRef(null);
+
     const renderRightActions = (dragX) => {
         const trans = dragX.interpolate({
             inputRange: [0, 50],
@@ -104,10 +107,12 @@ const Tarea = ({ nombre, estado, descripcion, fecha, hora, eliminado, color }) =
 
         const handleEliminar = () => {
             setShowModal(true);
+            swipeableRef.current.close()
         };
 
         const handleRecuperar = () => {
             setRecuperarModal(true)
+            swipeableRef.current.close()
         };
 
         return (
@@ -159,7 +164,7 @@ const Tarea = ({ nombre, estado, descripcion, fecha, hora, eliminado, color }) =
 
     return (
         <View width={"90%"} mt={4}>
-            <Swipeable renderRightActions={renderRightActions}>
+            <Swipeable renderRightActions={renderRightActions} ref={swipeableRef}>
                 <HStack
                     bgColor={color === "" ? "#f4f4f4" : colores[color]}
                     p={2}
